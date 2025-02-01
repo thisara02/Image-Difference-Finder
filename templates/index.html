@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Difference Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            display: block;
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+        }
+
+        label:hover {
+            background: #45a049;
+        }
+
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .file-name {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Difference Finder</h1>
+        <form action="/compare" method="post" enctype="multipart/form-data">
+            <label for="file1">Upload Image 1</label>
+            <input type="file" id="file1" name="file1" required onchange="displayFileName('file1', 'file1-name')">
+            <div class="file-name" id="file1-name">No file chosen</div>
+
+            <label for="file2">Upload Image 2</label>
+            <input type="file" id="file2" name="file2" required onchange="displayFileName('file2', 'file2-name')">
+            <div class="file-name" id="file2-name">No file chosen</div>
+
+            <button type="submit">Compare Images</button>
+        </form>
+    </div>
+
+    <script>
+        function displayFileName(inputId, displayId) {
+            const input = document.getElementById(inputId);
+            const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
+            document.getElementById(displayId).textContent = fileName;
+        }
+    </script>
+</body>
+</html>

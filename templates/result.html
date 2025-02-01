@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Comparison Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .image-container {
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 80%;
+            max-height: 300px;
+            margin: 10px;
+        }
+        .result-section {
+            margin-top: 20px;
+        }
+        .result-section pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Image Comparison Result</h1>
+
+        <!-- Image Display -->
+        <div class="image-container">
+            <h3>Original Image 1: {{ original1 }}</h3>
+            <img src="{{ url_for('uploaded_file', filename=original1) }}" alt="Image 1">
+
+            <h3>Original Image 2: {{ original2 }}</h3>
+            <img src="{{ url_for('uploaded_file', filename=original2) }}" alt="Image 2">
+        </div>
+
+        <!-- Extracted Texts -->
+        <div class="result-section">
+            <h4>Extracted Text from Image 1:</h4>
+            <pre>{{ extracted_text1 }}</pre>
+
+            <h4>Extracted Text from Image 2:</h4>
+            <pre>{{ extracted_text2 }}</pre>
+        </div>
+
+        <!-- Missing and Additional Text -->
+        <div class="result-section">
+            <h4>Text Differences:</h4>
+
+            <h5>Missing Text (in Image 1 but not in Image 2):</h5>
+            <pre>{{ missing_text }}</pre>
+
+            <h5>Additional Text (in Image 2 but not in Image 1):</h5>
+            <pre>{{ additional_text }}</pre>
+        </div>
+
+        <!-- Buttons -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('download_file', filename=pdf_filename) }}" class="btn btn-primary">Download Results as PDF</a>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary ml-2">Compare Again</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
